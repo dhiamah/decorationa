@@ -928,7 +928,7 @@ footer{background:var(--choco);padding:2.5rem;text-align:center;margin-top:4rem;
       
     }
     .pano-strip-wrap:hover .pano-track {
-      animation-play-state: paused;
+      
     }
     @keyframes pano-scroll {
       0%   { transform: translateX(0); }
