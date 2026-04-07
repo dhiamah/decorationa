@@ -909,3 +909,112 @@ footer{background:var(--choco);padding:2.5rem;text-align:center;margin-top:4rem;
   .holo-card-label { font-size: 12px; padding: 2rem .7rem .7rem; }
   .holo-section { padding: 2.5rem 1rem 3.5rem; }
 }
+/* ===== PANORAMIC PHOTO STRIP ===== */
+    .pano-strip-wrap {
+      position: relative;
+      width: 100%;
+      height: 260px;
+      overflow: hidden;
+      margin: 2rem 0 1.5rem;
+      z-index: 3;
+      border-radius: 10px;
+    }
+    /* Scrolling track */
+    .pano-track {
+      display: flex;
+      height: 100%;
+      width: max-content;
+      animation: pano-scroll 28s linear infinite;
+      
+    }
+    .pano-strip-wrap:hover .pano-track {
+      animation-play-state: paused;
+    }
+    @keyframes pano-scroll {
+      0%   { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
+    }
+    /* Individual slide */
+    .pano-slide {
+      position: relative;
+      height: 100%;
+      width: 380px;
+      flex-shrink: 0;
+      overflow: hidden;
+      margin-right: 3px;
+      border-radius: 10px;
+    }
+    .pano-img {
+      width: 100%;
+      height: 100%;
+      object-fit:cover;
+      object-position: center;
+      /* Slow inner pan on each image */
+      animation: pano-inner-pan 10s ease-in-out infinite alternate;
+      display: block;
+      background: linear-gradient(135deg, #cf854c, #eb9849);
+    }
+    @keyframes pano-inner-pan {
+      0%   { transform: scale(1.08) translateX(-3%); }
+      100% { transform: scale(1.08) translateX(3%); }
+    }
+    /* Stagger the pan direction per slide */
+    .pano-slide:nth-child(2) .pano-img { animation-direction: alternate-reverse; animation-delay: -2.5s; }
+    .pano-slide:nth-child(3) .pano-img { animation-delay: -5s; }
+    .pano-slide:nth-child(4) .pano-img { animation-direction: alternate-reverse; animation-delay: -7.5s; }
+
+    /* Holographic color overlay per slide */
+    .pano-holo-overlay {
+      position: absolute;
+      inset: 1;
+      pointer-events: none;
+      mix-blend-mode: screen;
+      animation: holo-color-shift 5s ease-in-out infinite alternate;
+    }
+    .pano-slide:nth-child(1) .pano-holo-overlay { background: linear-gradient(135deg, rgba(255,180,60,0.18), rgba(180,80,255,0.12)); animation-delay: 0s; }
+    .pano-slide:nth-child(2) .pano-holo-overlay { background: linear-gradient(135deg, rgba(80,220,255,0.14), rgba(255,80,160,0.12)); animation-delay: -1.25s; }
+    .pano-slide:nth-child(3) .pano-holo-overlay { background: linear-gradient(135deg, rgba(255,220,80,0.16), rgba(80,255,200,0.1));  animation-delay: -2.5s; }
+    .pano-slide:nth-child(4) .pano-holo-overlay { background: linear-gradient(135deg, rgba(200,80,255,0.14), rgba(255,200,80,0.12)); animation-delay: -3.75s; }
+    /* Clone slides mirror the pattern */
+    .pano-slide:nth-child(5) .pano-holo-overlay { background: linear-gradient(135deg, rgba(255,180,60,0.18), rgba(180,80,255,0.12)); }
+    .pano-slide:nth-child(6) .pano-holo-overlay { background: linear-gradient(135deg, rgba(80,220,255,0.14), rgba(255,80,160,0.12)); }
+    .pano-slide:nth-child(7) .pano-holo-overlay { background: linear-gradient(135deg, rgba(255,220,80,0.16), rgba(80,255,200,0.1)); }
+    .pano-slide:nth-child(8) .pano-holo-overlay { background: linear-gradient(135deg, rgba(200,80,255,0.14), rgba(255,200,80,0.12)); }
+    @keyframes holo-color-shift {
+      0%   { opacity: 0.4; }
+      100% { opacity: 1; }
+    }
+
+    /* Horizontal scan beam sweeping across the whole strip */
+    .pano-scan-beam {
+      position: absolute;
+      top: 0; bottom: 0;
+      width: 120px;
+      background: linear-gradient(90deg, transparent, rgba(255,220,120,0.15), rgba(255,255,255,0.08), rgba(255,220,120,0.15), transparent);
+      animation: pano-beam-sweep 4s ease-in-out infinite;
+      pointer-events: none;
+      z-index: 4;
+    }
+    @keyframes pano-beam-sweep {
+      0%   { left: -140px; opacity: 0; }
+      10%  { opacity: 1; }
+      90%  { opacity: 1; }
+      100% { left: calc(100% + 20px); opacity: 0; }
+    }
+
+    /* Edge fades */
+    .pano-fade-left, .pano-fade-right {
+      position: absolute;
+      top: 0; bottom: 0;
+      width: 80px;
+      z-index: 5;
+      pointer-events: none;
+    }
+    .pano-fade-left  { left: 0;  background: linear-gradient(to right, rgba(10,5,2,0.85), transparent); }
+    .pano-fade-right { right: 0; background: linear-gradient(to left,  rgba(10,5,2,0.85), transparent); }
+
+    /* Mobile */
+    @media (max-width: 600px) {
+      .pano-strip-wrap { height: 180px; }
+      .pano-slide { width: 260px; }
+    }
