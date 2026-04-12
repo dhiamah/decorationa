@@ -6,11 +6,43 @@
 <title>Décoration Gâteaux — Imen & Inès Arbi</title>
 <link rel="icon" type="images/jpg" href="https://i.imgur.com/9xmuxqf.jpeg?_nc_cat=106&ccb=1-7&_nc_sid=53a332&_nc_ohc=ifnn43614mIQ7kNvwHR-JZi&_nc_oc=AdoE0YAbYEcIYMg1RttLRTu9q2sKqzeR4WuJXyBJGvkW3jpSZ-ltCfwTkxuRNFWYVAc&_nc_zt=23&_nc_ht=scontent-dus1-1.xx&_nc_gid=R6uOyozxDPSNHq-4FOTjyQ&_nc_ss=8&oh=00_AfyTGpvKCTdEoww4vpaqsDWcXUSBGCFYNXWPhCBYsOmtyA&oe=69E2EA99">
 <link rel="stylesheet" href="style.css">
+<style>
+/* ═══════════════════════════════════════════════════════
+   MOBILE FORM ENHANCEMENT — matches laptop layout
+   ═══════════════════════════════════════════════════════ */
+@media (max-width: 768px) {
+  .order-wrap { padding: 20px 14px 40px; }
+  .order-section-label { display:flex!important;flex-direction:row!important;align-items:center!important;gap:12px!important;margin-bottom:20px!important; }
+  .order-fields { display:grid!important;grid-template-columns:1fr 1fr!important;gap:16px 14px!important; }
+  .order-field--full { grid-column:1 / -1!important; }
+  .order-field label { font-size:11px!important;letter-spacing:.06em!important;margin-bottom:6px!important;display:block; }
+  .order-field input,.order-field select,.order-field textarea { width:100%!important;box-sizing:border-box!important;font-size:15px!important;padding:11px 13px!important;border-radius:10px!important;min-height:46px!important; }
+  .order-field textarea { min-height:100px!important;resize:vertical!important; }
+  .item-row { display:grid!important;grid-template-columns:1fr auto auto!important;gap:8px!important;align-items:center!important; }
+  .item-row select { font-size:13px!important;padding:10px!important;min-height:44px!important; }
+  .kg-wrap { display:flex!important;align-items:center!important;gap:4px!important;min-width:90px!important; }
+  .kg-wrap input { width:58px!important;font-size:14px!important;padding:10px 8px!important;min-height:44px!important;text-align:center!important; }
+  .kg-unit { font-size:12px!important;white-space:nowrap!important; }
+  .remove-btn { min-width:36px!important;min-height:36px!important;font-size:18px!important;padding:0!important;display:flex!important;align-items:center!important;justify-content:center!important; }
+  .add-item-btn { width:100%!important;margin-top:10px!important;padding:12px!important;font-size:14px!important;border-radius:10px!important;display:flex!important;align-items:center!important;justify-content:center!important;gap:8px!important; }
+  .order-submit-wrap { margin-top:28px!important;display:flex!important;flex-direction:column!important;align-items:center!important;gap:14px!important; }
+  .order-submit-btn { width:100%!important;max-width:400px!important;padding:16px 28px!important;font-size:16px!important;border-radius:12px!important;display:flex!important;align-items:center!important;justify-content:center!important;gap:10px!important; }
+  .order-contact-note { font-size:13px!important;text-align:center!important; }
+  .order-hero-inner { padding:30px 18px 24px!important; }
+  .order-hero-title { font-size:clamp(22px,6vw,36px)!important; }
+  .order-hero-sub { font-size:14px!important; }
+  .order-hero-cta { padding:12px 28px!important;font-size:14px!important; }
+  .order-divider { margin:22px 0!important; }
+  .step-num { font-size:18px!important;min-width:36px!important;min-height:36px!important;display:flex!important;align-items:center!important;justify-content:center!important; }
+  .step-title { font-size:15px!important; }
+  .label-hint { display:inline!important;font-size:10px!important; }
+}
+</style>
+
 
 
 </head>
 <body>
-<script src="java.js"></script>
 <nav>
   <div class="logo">Décoration Gâteaux<span>Artisan Pâtisserie</span></div>
   <ul class="nav-links">
@@ -310,7 +342,7 @@
     <div class="order-hero-dots"><span></span><span></span><span></span></div>
   </div>
   <div class="order-wrap">
-    <form id="order-form" action="https://formspree.io/f/xdawpppd" method="POST">
+    <form id="order-form">
       <div id="order-form-wrap">
         <div class="order-section">
           <div class="order-section-label">
@@ -434,5 +466,6 @@
   </div>
 </nav>
 
+<script src="java.js"></script>
 </body>
 </html>
