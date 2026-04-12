@@ -158,24 +158,64 @@ function updateSummary(){
 }
 function addCart(name){goPage('order',null);setTimeout(()=>addItem(name),80);showToast(name+' ajouté à la commande !');}
 
-document.getElementById('order-form').addEventListener('submit',async function(e){
+document.getElementById('order-form').addEventListener('submit', async function(e) {
   e.preventDefault();
-  const prenom=document.getElementById('f-prenom').value.trim();
-  const tel=document.getElementById('f-tel').value.trim();
-  const date=document.getElementById('f-date').value;
-  const rows=document.querySelectorAll('#items-list .item-row');const items=[];
-  rows.forEach(row=>{const sel=row.querySelector('select')?.value;const qty=row.querySelector('input[type="number"]')?.value;if(sel&&qty)items.push(`${sel} — ${parseFloat(qty).toFixed(1)} kg`);});
-  if(!prenom||!tel||!date){showToast('Veuillez remplir tous les champs obligatoires *');return;}
-  if(!items.length){showToast('Ajoutez au moins un article à votre commande');return;}
-  let hidden=document.getElementById('hidden-articles');
-  if(!hidden){hidden=document.createElement('textarea');hidden.name='articles';hidden.id='hidden-articles';hidden.style.display='none';this.appendChild(hidden);}
-  hidden.value=items.join('\n');
-  const btn=this.querySelector('[type="submit"]');btn.disabled=true;btn.querySelector('.submit-text').textContent='Envoi en cours…';
-  try{
-    const res=await fetch(this.action,{method:'POST',body:new FormData(this),headers:{Accept:'application/json'}});
-    if(res.ok){document.getElementById('order-form-wrap').style.display='none';document.getElementById('form-success').style.display='block';}
-    else{const d=await res.json();showToast('Erreur : '+(d?.errors?.map(e=>e.message).join(', ')||'Inconnue'));btn.disabled=false;btn.querySelector('.submit-text').textContent='Envoyer la commande';}
-  }catch{showToast('Problème de connexion. Veuillez réessayer.');btn.disabled=false;btn.querySelector('.submit-text').textContent='Envoyer la commande';}
+  e.stopImmediatePropagation();
+
+  const prenom  = document.getElementById('f-prenom').value.trim();
+  const nom     = document.getElementById('f-nom').value.trim();
+  const tel     = document.getElementById('f-tel').value.trim();
+  const date    = document.getElementById('f-date').value;
+  const details = document.getElementById('f-details').value.trim();
+
+  // Collect ordered items
+  const rows = document.querySelectorAll('#items-list .item-row');
+  const items = [];
+  rows.forEach(function(row) {
+    var sel = row.querySelector('select') && row.querySelector('select').value;
+    var qty = row.querySelector('input[type="number"]') && row.querySelector('input[type="number"]').value;
+    if (sel && qty) items.push(sel + ' — ' + parseFloat(qty).toFixed(1) + ' kg');
+  });
+
+  if (!prenom || !tel || !date) { showToast('Veuillez remplir tous les champs obligatoires *'); return; }
+  if (!items.length) { showToast('Ajoutez au moins un article à votre commande'); return; }
+
+  var btn = document.querySelector('#order-form [type="submit"]');
+  btn.disabled = true;
+  btn.querySelector('.submit-text').textContent = 'Envoi en cours…';
+
+  // Use FormData with the articles field injected
+  var fd = new FormData();
+  fd.append('prenom', prenom);
+  fd.append('nom', nom);
+  fd.append('telephone', tel);
+  fd.append('date_souhaitee', date);
+  fd.append('articles', items.join('\n'));
+  fd.append('details', details || '—');
+
+  try {
+    var res = await fetch('https://formspree.io/f/xdawpppd', {
+      method: 'POST',
+      body: fd,
+      headers: { 'Accept': 'application/json' }
+    });
+
+    if (res.ok) {
+      document.getElementById('order-form-wrap').style.display = 'none';
+      document.getElementById('form-success').style.display    = 'block';
+      document.getElementById('form-success').scrollIntoView({ behavior: 'smooth' });
+    } else {
+      var d = await res.json();
+      var msg = d && d.errors ? d.errors.map(function(er){ return er.message; }).join(', ') : 'Inconnue';
+      showToast('Erreur : ' + msg);
+      btn.disabled = false;
+      btn.querySelector('.submit-text').textContent = 'Envoyer la commande';
+    }
+  } catch (err) {
+    showToast('Problème de connexion. Veuillez réessayer.');
+    btn.disabled = false;
+    btn.querySelector('.submit-text').textContent = 'Envoyer la commande';
+  }
 });
 
 function showToast(msg){const t=document.getElementById('toast');t.textContent=msg;t.classList.add('show');setTimeout(()=>t.classList.remove('show'),3000);}
