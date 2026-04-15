@@ -139,7 +139,7 @@ history.replaceState({page:'home'},'','#home');
 const allProducts=['baklewa amonde','baklewa noisette','baklewa fruit sec','ghrayba simple','ghrayba druit sec','ghrayba blanc','ghrayba sorgho','och bolbol','machmoum','samsa fruit sec'
 ,'samsa amonde','briwette noisette et amond','datte farcie','hlow amonde','hlow noisette','kak anbar','les balons de carthage','zouza caramel','zouza caramel et noisette',
 'Gâteau de Mariage',"Gâteau d'Anniversaire",'Gâteau Fiançailles',
-,'Mini Sandwichs','Plateau Mixte 30 pcs','Pot Zrir Décoré (Petit)','coffert classique','Zrir Traditionnel','Plateau Réception 60 pcs','Autre (préciser dans les détails)'];
+,'thon','poulet','crevettes','Pot Zrir Décoré (Petit)','coffert classique','Zrir Traditionnel','Plateau Réception 60 pcs','Autre (préciser dans les détails)'];
 let itemCount=0;
 function buildSelectOptions(v){return allProducts.map(p=>`<option value="${p}"${p===v?' selected':''}>${p}</option>`).join('');}
 function addItem(productName){
