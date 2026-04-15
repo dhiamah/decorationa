@@ -18,8 +18,8 @@ const IMG = {
   classique:       'https://www.giallozafferano.com/images/315-31521/birthday-cake_1200x800.jpg',
   birthday:        'https://i.imgur.com/XiUJTd4.jpeg',
   fiancailles:     'https://i.imgur.com/b24HlKj.jpeg',
-  plateau_30:      'https://i.imgur.com/M9eESDV.jpeg',
-  shrimp:          'blob:https://imgur.com/5ca8db20-fc1f-41d6-96a3-5a5d8d38a365',
+  poulet:      'https://i.imgur.com/M9eESDV.jpeg',
+  Crevettes:          'https://i.imgur.com/czN4dSC.png',
   thon:            'https://i.imgur.com/I0Vm8VB.jpeg',
   dattefarcie :    'https://i.imgur.com/hwBJSgm.jpeg',
   ochbolbol :      'https://i.imgur.com/ajII8aS.jpeg',
@@ -76,8 +76,8 @@ const zrirData = [
   }
 ];
 const saltData = [
-  {name:'Crevettes',desc:'Crevettes marinées, sauce cocktail',price:'65',img:IMG.shrimp,cat:'crevet'},
-  {name:'Plateau Mixte 30 pcs',desc:'Assortiment feuilletés et bouchées salées',price:'45',img:IMG.plateau_30,cat:'poulet'},
+  {name:'Crevettes',desc:'Crevettes marinées, sauce cocktail',price:'65',img:IMG.Crevettes,cat:'Crevettes'},
+  {name:'Plateau Mixte 30 pcs',desc:'Assortiment feuilletés et bouchées salées',price:'45',img:IMG.poulet,cat:'poulet'},
   {name:'Mini Sandwichs',desc:'Pain de mie, garnitures variées',price:'45',img:IMG.thon,cat:'thon'},
 ];
 
