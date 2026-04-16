@@ -23,7 +23,7 @@ const IMG = {
   thon:            'https://i.imgur.com/I0Vm8VB.jpeg',
   dattefarcie :    'https://i.imgur.com/hwBJSgm.jpeg',
   ochbolbol :      'https://i.imgur.com/ajII8aS.jpeg',
-  machmoum :       'https://i.imgur.com/ezjfkfj.jpeg',
+  machmoum :       'https://i.imgur.com/V00kHwo.jpeg',
  coffertclassique: 'https://i.imgur.com/sLbxcaL.jpeg',
   
 };
