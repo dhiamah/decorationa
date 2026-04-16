@@ -77,8 +77,8 @@ const zrirData = [
 ];
 const saltData = [
   {name:'Crevettes',desc:'Crevettes marinées, sauce cocktail',price:'65',img:IMG.Crevettes,cat:'Crevettes'},
-  {name:'Plateau Mixte 30 pcs',desc:'Assortiment feuilletés et bouchées salées',price:'45',img:IMG.poulet,cat:'poulet'},
-  {name:'Mini Sandwichs',desc:'Pain de mie, garnitures variées',price:'45',img:IMG.thon,cat:'thon'},
+  {name:'Plateau Mixte 42 pcs',desc:'Assortiment feuilletés et bouchées salées',price:'45',img:IMG.poulet,cat:'poulet'},
+  {name:'Mini Sandwichs 30 pcs',desc:'Pain de mie, garnitures variées',price:'30',img:IMG.thon,cat:'thon'},
 ];
 
 function renderGrid(data, gridId) {
