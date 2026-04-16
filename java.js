@@ -245,3 +245,4 @@ renderGrid(saltData,'salt-grid');
     container.appendChild(p);
   }
 })();
+
